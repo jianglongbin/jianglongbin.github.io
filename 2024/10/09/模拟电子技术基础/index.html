@@ -14,7 +14,7 @@
 <meta property="og:description" content="第六章 运算放大器6.1 运算放大器介绍运算放大器有五个端子，两个输入端：同向输入端和反相输入端，一个输出端，还有两个正负直流电源。 理想放大器的特性：无穷大的电压增益、无穷大的输入阻抗、零输出阻抗。 实际上的放大器特性：高电压增益、高输入阻抗、低输出阻抗、宽带宽。 6.2 差分放大器两个输入端和两个输出端组成。 差分放大器的三种工作状态：单端输入，差分输入、共模输入。 两个发射极电流相等，并且等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-09T06:25:42.000Z">
-<meta property="article:modified_time" content="2024-10-10T14:09:07.941Z">
+<meta property="article:modified_time" content="2024-11-25T13:46:53.240Z">
 <meta property="article:author" content="江龙滨">
 <meta name="twitter:card" content="summary">
   
@@ -115,7 +115,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script><h1 id="第六章-运算放大器"><a href="#第六章-运算放大器" class="headerlink" title="第六章 运算放大器"></a>第六章 运算放大器</h1><h2 id="6-1-运算放大器介绍"><a href="#6-1-运算放大器介绍" class="headerlink" title="6.1 运算放大器介绍"></a>6.1 运算放大器介绍</h2><p>运算放大器有五个端子，两个输入端：同向输入端和反相输入端，一个输出端，还有两个正负直流电源。</p>
+        <h1 id="第六章-运算放大器"><a href="#第六章-运算放大器" class="headerlink" title="第六章 运算放大器"></a>第六章 运算放大器</h1><h2 id="6-1-运算放大器介绍"><a href="#6-1-运算放大器介绍" class="headerlink" title="6.1 运算放大器介绍"></a>6.1 运算放大器介绍</h2><p>运算放大器有五个端子，两个输入端：同向输入端和反相输入端，一个输出端，还有两个正负直流电源。</p>
 <p>理想放大器的特性：无穷大的电压增益、无穷大的输入阻抗、零输出阻抗。</p>
 <p>实际上的放大器特性：高电压增益、高输入阻抗、低输出阻抗、宽带宽。</p>
 <h2 id="6-2-差分放大器"><a href="#6-2-差分放大器" class="headerlink" title="6.2 差分放大器"></a>6.2 差分放大器</h2><p>两个输入端和两个输出端组成。</p>
@@ -167,6 +167,36 @@
 </ul>
 <h2 id="6-5-负反馈运放组态"><a href="#6-5-负反馈运放组态" class="headerlink" title="6.5 负反馈运放组态"></a>6.5 负反馈运放组态</h2><p>闭环电压增益：</p>
 <p>带有负反馈的运放的电压增益。</p>
+<p>同相放大器：</p>
+<pre><code>闭环增益公式：
+Acl(NI) = Rf/Ri + 1 = 1/ B(反馈系数)
+
+电压跟随器是一种特殊的同相放大器，它的输出电压直接与反相端相连，它的闭环增益是1，有高阻抗输入，低阻抗输出的特点。
+</code></pre>
+<p>反相放大器：</p>
+<pre><code>同相端接地，电压输出端串联Rf连接到反相端，同时输入电压串联Ri连接反相端。
+
+闭环增益公式：
+Acl(I)=-Rf/Ri
+</code></pre>
+<h2 id="6-6-运放阻抗和噪音"><a href="#6-6-运放阻抗和噪音" class="headerlink" title="6.6 运放阻抗和噪音"></a>6.6 运放阻抗和噪音</h2><p>同相放大器：</p>
+<pre><code>输入阻抗：
+
+在理想状态下，因为反馈电压和输入电压差不多，所以差分电压接近为零，电流也就为零，所以输入阻抗可以看为无穷大。
+
+Zn(NI) = (1+Aol(运放的开环增益)*B) * Zin(运放开环增益时的输入阻抗)
+
+输出阻抗：
+
+在大多数情况下可以把同相放大器的输出阻抗看为0。
+
+Zout(NI) = Zout(运放的开环输出阻抗)/(1+Aol*B)
+</code></pre>
+<p>反相放大器：</p>
+<pre><code>Zin(I) = Ri
+
+Zout(I) = Zout / (1+ Aol * B) 
+</code></pre>
 
       
     </div>
