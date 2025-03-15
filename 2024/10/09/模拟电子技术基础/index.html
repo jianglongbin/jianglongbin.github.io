@@ -14,7 +14,7 @@
 <meta property="og:description" content="第六章 运算放大器6.1 运算放大器介绍运算放大器有五个端子，两个输入端：同向输入端和反相输入端，一个输出端，还有两个正负直流电源。 理想放大器的特性：无穷大的电压增益、无穷大的输入阻抗、零输出阻抗。 实际上的放大器特性：高电压增益、高输入阻抗、低输出阻抗、宽带宽。 6.2 差分放大器两个输入端和两个输出端组成。 差分放大器的三种工作状态：单端输入，差分输入、共模输入。 两个发射极电流相等，并且等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-09T06:25:42.000Z">
-<meta property="article:modified_time" content="2024-11-29T13:40:35.304Z">
+<meta property="article:modified_time" content="2024-12-26T13:50:07.488Z">
 <meta property="article:author" content="江龙滨">
 <meta name="twitter:card" content="summary">
   
@@ -249,6 +249,80 @@ B(反馈衰减因子) = Ri / (Ri + Rf)
 <p>补偿网络：</p>
 <pre><code>在级联放大器之间并联电阻串联电容，可以牺牲带宽，并将开环响应向下延长。
 </code></pre>
+<h1 id="第八章-基本运算放大器电路"><a href="#第八章-基本运算放大器电路" class="headerlink" title="第八章 基本运算放大器电路"></a>第八章 基本运算放大器电路</h1><h2 id="8-1-比较器"><a href="#8-1-比较器" class="headerlink" title="8.1 比较器"></a>8.1 比较器</h2><p>反相输入端接参考电压，同相输入端接输入电压，即为方波发生器。</p>
+<p>滞回比较器，又称施密特触发器，同相输入端连接到电阻分压器，使得输出端电压反馈到输入端，输入信号连接到反相输入端。<br>作用是设置两个参考电压，减少了噪声的影响。</p>
+<p>为了使比较器的输出电压能限幅，输出端串联两个互为反向的齐纳二极管，反馈到反相输入端，同相输入端接地，输入电压接反相输入端。</p>
+<p>窗口比较器，两个运算放大器并联。上面的放大器的反相输入端接上限幅电压，下面的放大器的同相输入端接下限幅电压，输入电压接到剩余两端。<br>作用是检测出输入电压在上下两个限幅值之间的变化，超过上限输出高电平，低于下限电压输出低电平。</p>
+<h2 id="8-2-求和放大器"><a href="#8-2-求和放大器" class="headerlink" title="8.2 求和放大器"></a>8.2 求和放大器</h2><p>一个具有负反馈的放大器，反相端并联若干个输入信号，并串联电阻。</p>
+<p>V(out) &#x3D; - (Rf(反馈电阻)&#x2F; R)  * (Vin1 + Vin2 + Vin3 …)</p>
+<p>用作求和放大器时Rf &#x3D; R,用作均值放大器时Rf &lt; R,用作比例放大器时根据权重决定电阻大小,R越小权重越大。</p>
+<h2 id="8-3-积分器和微分器"><a href="#8-3-积分器和微分器" class="headerlink" title="8.3 积分器和微分器"></a>8.3 积分器和微分器</h2><p>积分器：</p>
+<pre><code>同相端接地，电压信号通过电阻接到反相端，负反馈是一个电容。
+
+输出电压 = (Ic / C) * t
+
+输出电压变化率 = -Vin / (RC)
+</code></pre>
+<p>微分器：</p>
+<pre><code>电阻和电容位置和积分器相反。
+
+输出电压 = I * Rf = - (Vc/t) * Rf *C
+</code></pre>
+<h2 id="8-4-转换器和其他运算放大器电路"><a href="#8-4-转换器和其他运算放大器电路" class="headerlink" title="8.4 转换器和其他运算放大器电路"></a>8.4 转换器和其他运算放大器电路</h2><p>恒流源：</p>
+<pre><code>稳压源通过输入电阻提供恒定电流，输入信号连接反相端。
+</code></pre>
+<p>电流-电压转换器：</p>
+<pre><code>没有输入电阻，输出的电压等于反馈电阻上的电压，该电压与电流成正比。输入信号连接到反相端。
+</code></pre>
+<p>电压-电流转换器：</p>
+<pre><code>负载电阻和反相端之间并联一个电阻，然后接地。输入信号连接大同相端。
+
+负载电阻的电流 = 输入电压 / 电阻。
+</code></pre>
+<p>峰值检测器：</p>
+<pre><code>检测输入电压的峰值，并将峰值电压储存在电容器。
+
+输入信号通过输入电阻接到同相端，输出端接二极管并接一个电阻回反相端，在二极管和电阻之间并联一个电容并接地，输出电压在中心。
+</code></pre>
+<h1 id="第九章-有源滤波器"><a href="#第九章-有源滤波器" class="headerlink" title="第九章 有源滤波器"></a>第九章 有源滤波器</h1><h2 id="9-1-基本滤波器响应"><a href="#9-1-基本滤波器响应" class="headerlink" title="9.1 基本滤波器响应"></a>9.1 基本滤波器响应</h2><p>包含一个或多个运算放大器的滤波器叫有源滤波器。</p>
+<p>有源滤波器：</p>
+<ul>
+<li>低通滤波器</li>
+<li>高通滤波器</li>
+<li>带通滤波器</li>
+<li>带阻滤波器</li>
+</ul>
+<p>带通滤波器</p>
+<pre><code>BW = fc2 - fc1
+
+f0(中心频率) = (fc2 * fc1) ^ (1/2)
+
+Q = f0 / BW
+
+Q值越高，带宽越窄，选择性越好。
+</code></pre>
+<h2 id="9-2-滤波器的响应特性"><a href="#9-2-滤波器的响应特性" class="headerlink" title="9.2 滤波器的响应特性"></a>9.2 滤波器的响应特性</h2><p>有源滤波器的阻尼系数(DF)决定着滤波器呈现哪种特性。</p>
+<p>巴特沃斯：</p>
+<pre><code>在通带内提供非常平坦的幅值响应，下降率为-20db/十倍频程。
+</code></pre>
+<p>切比雪夫：</p>
+<pre><code>通带内有波动，提供更快的下降率。
+</code></pre>
+<p>贝塞尔：</p>
+<pre><code>相移随着频率线性增加。
+</code></pre>
+<p>DF &#x3D; 2 - R1&#x2F;R2</p>
+<p>有源滤波器的基本元件：放大器、滤波器、反馈网络。</p>
+<h2 id="有源低通滤波器"><a href="#有源低通滤波器" class="headerlink" title="有源低通滤波器"></a>有源低通滤波器</h2><p>单极点滤波器：</p>
+<pre><code>f = 1/(2* pi * RC)
+</code></pre>
+<p>Sallen-Key低通滤波器：</p>
+<pre><code>最常见的二阶滤波器中的一种，由两个低通RC网络组成，当大于截止频率时它的下降率为-40db/十倍频程。
+
+f = 1/[2 *pi (Ra * Rb * Ca * Cb)^1/2]
+
+级联低通滤波器以获得更高下降率。
+</code></pre>
 
       
     </div>
@@ -307,7 +381,7 @@ B(反馈衰减因子) = Ri / (Ri + Rf)
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li></ul>
     </div>
   </div>
 
@@ -318,6 +392,10 @@ B(反馈衰减因子) = Ri / (Ri + Rf)
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/12/31/%E6%B8%B8%E6%88%8F%E9%87%8C%E8%BF%87%E5%B9%B4/">游戏里过年</a>
+          </li>
         
           <li>
             <a href="/2024/11/22/%E3%80%8A%E7%BA%A2%E4%B8%8E%E9%BB%91%E3%80%8B%E7%9A%84%E5%93%81%E8%AF%BB/">《红与黑》的品读</a>
@@ -335,10 +413,6 @@ B(反馈衰减因子) = Ri / (Ri + Rf)
             <a href="/2024/10/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/">模拟电子技术基础</a>
           </li>
         
-          <li>
-            <a href="/2024/10/02/%E8%81%AA%E6%98%8E%E7%9A%84%E6%8A%95%E8%B5%84%E8%80%85/">聪明的投资者</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -352,7 +426,7 @@ B(反馈衰减因子) = Ri / (Ri + Rf)
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2024 江龙滨<br>
+      &copy; 2025 江龙滨<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
