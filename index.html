@@ -89,6 +89,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-香橙派zero3外接1T固态硬盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/" class="article-date">
+  <time class="dt-published" datetime="2025-04-10T05:36:16.000Z" itemprop="datePublished">2025-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/">香橙派zero3外接1T固态硬盘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前几天心血来潮，想屯点电影资源，但是香橙派的128g内存卡已经不够用了，之前在里面屯了很多模拟器游戏，综合性价比就买了致态1t固态硬盘和绿联硬盘盒。</p>
+<p>遇到的第一个问题就是docker容器挂载，一开始我错误的将docker映射的路径和外部存储挂载的路径相同，以为这样就能同时访问，现在看来两个挂载不能挂载在一个路径，会出现问题，所以在固态硬盘再新建了一个路径alist，将资源存在这个路径里，然后docker映射到这个路径就能完美解决。</p>
+<p>为了能开机自动挂载，修改&#x2F;etc&#x2F;fstab文件，但这里又犯了一个错误，没有加上nofail的参数，这就导致如果开机没有插上硬盘，系统就会自检不过，让我以为是开发板烧坏了，幸好我用串口修复了这个问题。</p>
+<pre><code>UUID=4EFA-E771 /mnt exfat defaults,nofail 0 0
+</code></pre>
+<p>遇到的第二个问题是在看电影的中途必定会掉盘，这种情况极具误导性，一开始我自然而然地想到可能是供电问题，买了扩展坞和换了数据线都没能解决，搞了好几天，在网上搜到可能是绿联硬盘盒的问题，那时候已经想第二天决定要退掉硬盘盒，但那天晚上抱着试一试的心态按网上的方法刷硬盘盒的固件，毕竟退货真的好麻烦。结果真的成功了，测试了几天，现在看来应该是没问题了。</p>
+<p>绿联的客服就像个人机一样，明明这个硬盘盒的芯片通病在网上有这么多，还一直让我检查数据线、接口、系统这些问题。</p>
+<p>后面又买了一个数显usb测功率，发现香橙派zero3只带一个小风扇的情况下功率是1w，再接上1t固态硬盘也才2w，离最大功率15w还有很大的距离，根本就不需要单独供电。</p>
+<p>测了一下下载上传的速度，最高好像才15MB&#x2F;s，就是大概120兆，这个速度多开一个窗口看电影就会很卡，看来上限在自带的无线网卡上。直接插上有线网线的话是30MB&#x2F;s，大概也就250兆，这时候同时开三个窗口看电影都很流畅。宿舍的路由器是千兆的，这个速度一般般，不是很理想，没能跑满路由器的速度，看来是到香橙派的瓶颈了。</p>
+<p>这里还是有个小问题，宿舍断电的话硬盘就识别不到了，得按充电宝的按钮重新刷新供电，算是小问题，如果宿舍晚上不断电就好了。</p>
+<p>自此香橙派zero3外接固态硬盘的方案总算是近乎完美地搞定了，就这个小改动卡了我快一周，解决后真的心情愉悦。</p>
+<p><img src="/images/orangepi_1T.jpeg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jianglongbin.netlify.app/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/" data-id="cm9bfy8qd000026njdkfl58mt" data-title="香橙派zero3外接1T固态硬盘" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-清明节" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/04/04/%E6%B8%85%E6%98%8E%E8%8A%82/" class="article-date">
@@ -479,61 +529,6 @@
 
 
   
-    <article id="post-决策与判断" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/02/%E5%86%B3%E7%AD%96%E4%B8%8E%E5%88%A4%E6%96%AD/" class="article-date">
-  <time class="dt-published" datetime="2024-10-02T21:51:27.000Z" itemprop="datePublished">2024-10-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/02/%E5%86%B3%E7%AD%96%E4%B8%8E%E5%88%A4%E6%96%AD/">决策与判断</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第一编知觉、记忆和情景"><a href="#第一编知觉、记忆和情景" class="headerlink" title="第一编知觉、记忆和情景"></a>第一编知觉、记忆和情景</h1><h1 id="选择性知觉"><a href="#选择性知觉" class="headerlink" title="选择性知觉"></a>选择性知觉</h1><p>人所看到的事物很容易受到自身期望的影响。</p>
-<h2 id="威尔逊和艾布拉姆斯"><a href="#威尔逊和艾布拉姆斯" class="headerlink" title="威尔逊和艾布拉姆斯"></a>威尔逊和艾布拉姆斯</h2><ul>
-<li><p>支配：完全受期望影响</p>
-</li>
-<li><p>折中：不完全受期望影响，采取折中的策略判断</p>
-</li>
-<li><p>分裂：无法做出判断</p>
-</li>
-<li><p>再认：知道有问题，但无法准确的说出
-        
-          <p class="article-more-link">
-            <a href="/2024/10/02/%E5%86%B3%E7%AD%96%E4%B8%8E%E5%88%A4%E6%96%AD/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jianglongbin.netlify.app/2024/10/02/%E5%86%B3%E7%AD%96%E4%B8%8E%E5%88%A4%E6%96%AD/" data-id="cm38nqw57000440njhdk46jiz" data-title="决策与判断" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -577,6 +572,10 @@
       <ul>
         
           <li>
+            <a href="/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/">香橙派zero3外接1T固态硬盘</a>
+          </li>
+        
+          <li>
             <a href="/2025/04/04/%E6%B8%85%E6%98%8E%E8%8A%82/">清明节</a>
           </li>
         
@@ -590,10 +589,6 @@
         
           <li>
             <a href="/2024/12/31/%E6%B8%B8%E6%88%8F%E9%87%8C%E8%BF%87%E5%B9%B4/">游戏里过年</a>
-          </li>
-        
-          <li>
-            <a href="/2024/11/22/%E3%80%8A%E7%BA%A2%E4%B8%8E%E9%BB%91%E3%80%8B%E7%9A%84%E5%93%81%E8%AF%BB/">《红与黑》的品读</a>
           </li>
         
       </ul>
