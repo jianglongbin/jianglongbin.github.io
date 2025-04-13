@@ -89,6 +89,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-docker部署备忘录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/12/docker%E9%83%A8%E7%BD%B2%E5%A4%87%E5%BF%98%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2025-04-12T21:17:03.000Z" itemprop="datePublished">2025-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/04/12/docker%E9%83%A8%E7%BD%B2%E5%A4%87%E5%BF%98%E5%BD%95/">docker部署备忘录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>alist：</p>
+<pre><code>  docker run -d --restart=unless-stopped -v /etc/alist:/opt/alist/data -v /home/alist:/home -v /mnt/alist:/mnt -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name=&quot;alist&quot;  xhofe/alist:latest 
+</code></pre>
+</li>
+<li><p>astrbot：</p>
+<pre><code>  sudo docker run -itd -p 6180-6200:6180-6200 -p 11451:11451 -v $PWD/data:/AstrBot/data -v /etc/localtime:/etc/localtime:ro -v /etc/timezone:/etc/timezone:ro --restart=always --name astrbot soulter/astrbot:latest
+</code></pre>
+</li>
+<li><p>samba：</p>
+<pre><code>  docker run -it --name samba -p 139:139 -p 445:445 -v/home/alist:/home -v /mnt/alist:/mnt -d --restart=always  dperson/samba -u &quot;admin;password&quot; -s &quot;mnt;/mnt/;yes;no;no;all;admin;admin&quot; -s &quot;home;/home/;yes;no;no;all;admin;admin&quot; 
+</code></pre>
+</li>
+<li><p>节点小宝：</p>
+<pre><code>  docker run -d --net host --name owjdxb -v &quot;$(pwd)/store:/data/store&quot; --restart always ionewu/owjdxb_a64
+</code></pre>
+</li>
+<li><p>vaultwarden：</p>
+<pre><code>  docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 --restart always vaultwarden/server:latest
+</code></pre>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jianglongbin.netlify.app/2025/04/12/docker%E9%83%A8%E7%BD%B2%E5%A4%87%E5%BF%98%E5%BD%95/" data-id="cm9fpvzsw00000ynjbqwr2itl" data-title="docker部署备忘录" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-香橙派zero3外接1T固态硬盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/" class="article-date">
@@ -480,55 +540,6 @@
 
 
   
-    <article id="post-聪明的投资者" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/02/%E8%81%AA%E6%98%8E%E7%9A%84%E6%8A%95%E8%B5%84%E8%80%85/" class="article-date">
-  <time class="dt-published" datetime="2024-10-02T22:15:19.000Z" itemprop="datePublished">2024-10-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/02/%E8%81%AA%E6%98%8E%E7%9A%84%E6%8A%95%E8%B5%84%E8%80%85/">聪明的投资者</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第一章-投资与投机：聪明投资者的预期收益"><a href="#第一章-投资与投机：聪明投资者的预期收益" class="headerlink" title="第一章 投资与投机：聪明投资者的预期收益"></a>第一章 投资与投机：聪明投资者的预期收益</h1><p>如同《证券分析》一样，这本书在开篇首先就区分了什么是投资和投机。投资者是看股票的实际价值，投机者是看股票在市场的价值。投资者不会因为股票的市场价格波动而做出影响，投机者着反之。</p>
-<p>投机者虽然可能在市场赚到钱，但就像高速行驶的汽车一样，虽然超速行驶会更快的到达目的地，但早晚会出事。而且投机方法一旦被公之于众，被更多人使用，那么这种方法迟早会失效。投资就不一样，能够经过时间的考验，不会成为一时兴起。为什么人们更喜欢投机而不是投资，就像人人都知道把钱存银行能得利息一样，人们更喜欢赚快钱。</p>
-<p>一般建议将投机的账户
-        
-          <p class="article-more-link">
-            <a href="/2024/10/02/%E8%81%AA%E6%98%8E%E7%9A%84%E6%8A%95%E8%B5%84%E8%80%85/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jianglongbin.netlify.app/2024/10/02/%E8%81%AA%E6%98%8E%E7%9A%84%E6%8A%95%E8%B5%84%E8%80%85/" data-id="cm38nqw6g000a40njgk7s1ep4" data-title="聪明的投资者" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -572,6 +583,10 @@
       <ul>
         
           <li>
+            <a href="/2025/04/12/docker%E9%83%A8%E7%BD%B2%E5%A4%87%E5%BF%98%E5%BD%95/">docker部署备忘录</a>
+          </li>
+        
+          <li>
             <a href="/2025/04/10/%E9%A6%99%E6%A9%99%E6%B4%BEzero3%E5%A4%96%E6%8E%A51T%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98/">香橙派zero3外接1T固态硬盘</a>
           </li>
         
@@ -585,10 +600,6 @@
         
           <li>
             <a href="/2025/03/21/%E5%90%83%E7%81%AB%E9%94%85%E7%9A%84%E4%B8%80%E5%A4%A9/">吃火锅的一天</a>
-          </li>
-        
-          <li>
-            <a href="/2024/12/31/%E6%B8%B8%E6%88%8F%E9%87%8C%E8%BF%87%E5%B9%B4/">游戏里过年</a>
           </li>
         
       </ul>
