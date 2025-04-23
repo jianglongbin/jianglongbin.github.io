@@ -89,6 +89,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-搭建网页聊天室" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/04/22/%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E8%81%8A%E5%A4%A9%E5%AE%A4/" class="article-date">
+  <time class="dt-published" datetime="2025-04-22T04:03:35.000Z" itemprop="datePublished">2025-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/04/22/%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E8%81%8A%E5%A4%A9%E5%AE%A4/">搭建网页聊天室</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>vocechat的网页挂件代码：</p>
+<pre><code>&lt;!-- 将以下代码放置于你的网页中 --&gt;
+&lt;script 
+data-host-id=&quot;1&quot; 
+data-auto-reg=&quot;true&quot; 
+data-login-token=&quot;&quot; 
+data-title=&quot;&quot; 
+data-logo=&quot;&quot; 
+data-theme-color=&quot;#1fe1f9&quot; 
+data-close-width=&quot;48&quot; 
+data-close-height=&quot;48&quot; 
+data-open-width=&quot;380&quot; 
+data-open-height=&quot;680&quot; 
+data-welcome=&quot;Your custom welcome text&quot; 
+src=&quot;http://192.168.31.179:3050/widget.js&quot; 
+async 
+&gt;&lt;/script&gt;
+</code></pre>
+<p>我是把这串代码放进了hexo的</p>
+<pre><code>hexo/themes/landscape/layout/_partial/after-footer.ejs
+</code></pre>
+<p>的路径。</p>
+<p>电脑端浏览还不错，但手机端的比例就有点奇怪了。</p>
+<p>然后就是手机app收消息不太及时，得杀掉后台再进才会接收。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jianglongbin.netlify.app/2025/04/22/%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E8%81%8A%E5%A4%A9%E5%AE%A4/" data-id="cm9sjmpaz000001njf22p78zc" data-title="搭建网页聊天室" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-解决hexo访问慢的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/04/14/%E8%A7%A3%E5%86%B3hexo%E8%AE%BF%E9%97%AE%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
@@ -172,6 +234,13 @@
 </code></pre>
 </li>
 </ul>
+<p>vocechat:</p>
+<pre><code>    docker run -d --restart=always \
+    -p 443:443 \
+    --name vocechat-server \
+    -v ./vocechat:/home/vocechat-serverdata \
+    privoce/vocechat-server:latest \
+</code></pre>
 
       
     </div>
@@ -477,66 +546,6 @@
 
 
   
-    <article id="post-模拟电子技术基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time class="dt-published" datetime="2024-10-09T06:25:42.000Z" itemprop="datePublished">2024-10-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/">模拟电子技术基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第六章-运算放大器"><a href="#第六章-运算放大器" class="headerlink" title="第六章 运算放大器"></a>第六章 运算放大器</h1><h2 id="6-1-运算放大器介绍"><a href="#6-1-运算放大器介绍" class="headerlink" title="6.1 运算放大器介绍"></a>6.1 运算放大器介绍</h2><p>运算放大器有五个端子，两个输入端：同向输入端和反相输入端，一个输出端，还有两个正负直流电源。</p>
-<p>理想放大器的特性：无穷大的电压增益、无穷大的输入阻抗、零输出阻抗。</p>
-<p>实际上的放大器特性：高电压增益、高输入阻抗、低输出阻抗、宽带宽。</p>
-<h2 id="6-2-差分放大器"><a href="#6-2-差分放大器" class="headerlink" title="6.2 差分放大器"></a>6.2 差分放大器</h2><p>两个输入端和两个输出端组成。</p>
-<p>差分放大器的三种工作状态：单端输入，差分输入、共模输入。</p>
-<p>两个发射极电流相等，并且等于总输入端的电流的一般</p>
-<p>单端输入：</p>
-<p>一个输入端接地，另一个输入端偏置，偏置的输出端信号反向，另一输出端正向。</p>
-<p>差分输入：</p>
-<p>一个输入端输入同相信号，另一输入端输入反相信号，则输出端输出的都为各自输入端信号反相的增强信号。</p>
-<p>共模输入：</p>
-<p>两个输入端输入的都为同相信号，则输出端刚好抵消。</p>
-<p>共模抑制比：</p>
-<p>CMRR &#x3D; 差分增益与共模增
-        
-          <p class="article-more-link">
-            <a href="/2024/10/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jianglongbin.netlify.app/2024/10/09/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/" data-id="cm9mvxg1j000b1dnjf4xbcshb" data-title="模拟电子技术基础" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -580,6 +589,10 @@
       <ul>
         
           <li>
+            <a href="/2025/04/22/%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E8%81%8A%E5%A4%A9%E5%AE%A4/">搭建网页聊天室</a>
+          </li>
+        
+          <li>
             <a href="/2025/04/14/%E8%A7%A3%E5%86%B3hexo%E8%AE%BF%E9%97%AE%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">解决hexo访问慢的问题</a>
           </li>
         
@@ -593,10 +606,6 @@
         
           <li>
             <a href="/2025/04/04/%E6%B8%85%E6%98%8E%E8%8A%82/">清明节</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/31/%E9%A1%BF%E6%82%9F/">顿悟</a>
           </li>
         
       </ul>
@@ -652,6 +661,23 @@
 
 
 
+
+<!-- 将以下代码放置于你的网页中 -->
+<script 
+  data-host-id="1" 
+  data-auto-reg="false" 
+  data-login-token="" 
+  data-title="" 
+  data-logo="" 
+  data-theme-color="#1fe1f9" 
+  data-close-width="48" 
+  data-close-height="48" 
+  data-open-width="380" 
+  data-open-height="480" 
+  data-welcome="匿名聊天，请自创名字和邮箱，并记住它们，以便下次能继续对话。接收新消息请刷新页面" 
+  src="https://jianglongbin.iepose.cn/widget.js" 
+  async 
+></script>
   </div>
 </body>
 </html>
