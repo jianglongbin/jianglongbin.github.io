@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2024/7 | 江龙滨</title>
+  <title>Docker Compose搭建Rocket.Chat指南 | 江龙滨</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="这是个博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="江龙滨">
-<meta property="og:url" content="https://jianglongbin.netlify.app/archives/2024/07/index.html">
+  <meta name="description" content="version: ‘3.8’ services:  rocketchat:    image: rocket.chat:latest    restart: always    ports:      - “8080:3000”  # 将宿主机的8080端口映射到容器3000端口    environment:      - PORT&#x3D;3000      - ROOT_URL&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Compose搭建Rocket.Chat指南">
+<meta property="og:url" content="https://jianglongbin.netlify.app/2025/05/31/Docker-Compose%E6%90%AD%E5%BB%BARocket-Chat%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="江龙滨">
-<meta property="og:description" content="这是个博客">
+<meta property="og:description" content="version: ‘3.8’ services:  rocketchat:    image: rocket.chat:latest    restart: always    ports:      - “8080:3000”  # 将宿主机的8080端口映射到容器3000端口    environment:      - PORT&#x3D;3000      - ROOT_URL&#x3D;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-31T07:41:04.000Z">
+<meta property="article:modified_time" content="2025-05-31T15:41:44.526Z">
 <meta property="article:author" content="江龙滨">
 <meta name="twitter:card" content="summary">
   
@@ -83,39 +85,57 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/07/07/%E4%B8%B4%E8%B5%B0%E5%89%8D%E7%9A%84%E5%AD%A6%E6%A0%A1%E5%85%AD%E7%82%B9/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-07-07T13:45:06.000Z" itemprop="datePublished">7月 7</time>
+        <section id="main"><article id="post-Docker-Compose搭建Rocket-Chat指南" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/05/31/Docker-Compose%E6%90%AD%E5%BB%BARocket-Chat%E6%8C%87%E5%8D%97/" class="article-date">
+  <time class="dt-published" datetime="2025-05-31T07:41:04.000Z" itemprop="datePublished">2025-05-31</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/07/07/%E4%B8%B4%E8%B5%B0%E5%89%8D%E7%9A%84%E5%AD%A6%E6%A0%A1%E5%85%AD%E7%82%B9/">临走前的学校六点</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Docker Compose搭建Rocket.Chat指南
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>version: ‘3.8’</p>
+<p>services:<br>  rocketchat:<br>    image: rocket.chat:latest<br>    restart: always<br>    ports:<br>      - “8080:3000”  # 将宿主机的8080端口映射到容器3000端口<br>    environment:<br>      - PORT&#x3D;3000<br>      - ROOT_URL&#x3D;<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a>  # 使用您的公网IP和端口<br>      - MONGO_URL&#x3D;mongodb:&#x2F;&#x2F;mongo:27017&#x2F;rocketchat?replicaSet&#x3D;rs0<br>      - MONGO_OPLOG_URL&#x3D;mongodb:&#x2F;&#x2F;mongo:27017&#x2F;local?replicaSet&#x3D;rs0<br>    depends_on:<br>      - mongo<br>    volumes:<br>      - .&#x2F;uploads:&#x2F;app&#x2F;uploads</p>
+<p>  mongo:<br>    image: mongo:5.0<br>    restart: always<br>    command: mongod –replSet rs0 –oplogSize 128<br>    volumes:<br>      - .&#x2F;data&#x2F;db:&#x2F;data&#x2F;db<br>      - .&#x2F;data&#x2F;dump:&#x2F;dump<br>    environment:<br>      - TZ&#x3D;Asia&#x2F;Shanghai</p>
+<p>  mongo-init:<br>    image: mongo:5.0<br>    command: &gt;<br>      bash -c<br>        “for i in <code>seq 1 30</code>; do<br>          mongo mongo:27017 –eval &quot;rs.initiate({_id:’rs0’, members:[{_id:0, host:’mongo:27017’}]})&quot; &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;&amp;<br>          s&#x3D;$$? &amp;&amp; break || s&#x3D;$$?;<br>          echo &quot;Tried $$i times. Waiting 5 sec…&quot;;<br>          sleep 5;<br>        done; (exit $$s)”<br>    depends_on:<br>      - mongo</p>
+<h1 id="可选：添加Nginx反向代理（如果需要80端口访问）"><a href="#可选：添加Nginx反向代理（如果需要80端口访问）" class="headerlink" title="可选：添加Nginx反向代理（如果需要80端口访问）"></a>可选：添加Nginx反向代理（如果需要80端口访问）</h1><h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx:"></a>nginx:</h1><h1 id="image-nginx-alpine"><a href="#image-nginx-alpine" class="headerlink" title="image: nginx:alpine"></a>image: nginx:alpine</h1><h1 id="ports"><a href="#ports" class="headerlink" title="ports:"></a>ports:</h1><h1 id="“80-80”"><a href="#“80-80”" class="headerlink" title="- “80:80”"></a>- “80:80”</h1><h1 id="volumes"><a href="#volumes" class="headerlink" title="volumes:"></a>volumes:</h1><h1 id="nginx-conf-etc-nginx-conf-d-default-conf"><a href="#nginx-conf-etc-nginx-conf-d-default-conf" class="headerlink" title="- .&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf"></a>- .&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf</h1><h1 id="depends-on"><a href="#depends-on" class="headerlink" title="depends_on:"></a>depends_on:</h1><h1 id="rocketchat"><a href="#rocketchat" class="headerlink" title="- rocketchat"></a>- rocketchat</h1><p>volumes:<br>  uploads:<br>  data:</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://jianglongbin.netlify.app/2025/05/31/Docker-Compose%E6%90%AD%E5%BB%BARocket-Chat%E6%8C%87%E5%8D%97/" data-id="cmbcg5e26000001nj0kdb1ey5" data-title="Docker Compose搭建Rocket.Chat指南" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/05/30/VoceSpace-%E4%B8%80%E6%AC%BE%E8%BD%BB%E4%BE%BF%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E6%BA%90meeting%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">VoceSpace 一款轻便部署的开源meeting应用</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
